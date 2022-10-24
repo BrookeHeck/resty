@@ -4,6 +4,7 @@
 This project shows results from making requests to a specified endpoint. You can add a endpoint to the text input and choose the method in the select box next to it. Hitting submit will show the results in the container below. A search history is recorded in the left sidebar.
 
 ## UML
+<img src='./img/lab26.png'>
 
 ## Available Scripts
 
