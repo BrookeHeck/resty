@@ -3,7 +3,17 @@ import { Form, Button, Container } from 'react-bootstrap';
 import './UrlForm.scss';
 import axios from 'axios';
 
-function UrlForm({ setResults }) {
+function UrlForm({ setResults, history, setHistory }) {
+
+  function updateHistory(config) {
+    const newSearch = {
+      'method': config.method,
+      'url': config.url,
+    };
+    const newHistory = history;
+    newHistory.push(newSearch)
+    setHistory(newHistory);
+  }
 
   async function handleRequest(e) {
     e.preventDefault();
@@ -14,8 +24,9 @@ function UrlForm({ setResults }) {
     try {
       let response = await axios(config);
       setResults(response.data);
+      updateHistory(config);
     } catch(e) {
-      
+
     }
 
   }

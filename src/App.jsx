@@ -15,10 +15,10 @@ function App() {
       <Header id='header' />
       <Container id='main'>
         <Container id='history-div'>
-          <History history={history} setHistory={setHistory} />
+          <History history={history} />
         </Container>
         <Container id='url-results-div'>
-          <UrlForm setResults={setResults} />
+          <UrlForm setResults={setResults} history={history} setHistory={setHistory} />
           <Results results={results} />
         </Container>
       </Container>
