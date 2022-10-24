@@ -1,11 +1,18 @@
-.btn {
-  margin: 5px;
+#inputsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-.method .btn {
-  background-color: gray;
-  color: black;
-  border: solid gray 2px;
+#inputsContainer .form-select {
+  width: 80px;
+  height: 100%;
+  margin-right: 5px;
+}
+
+
+
+.btn {
   margin: 5px;
 }
 
