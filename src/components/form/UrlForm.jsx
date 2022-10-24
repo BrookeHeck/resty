@@ -11,8 +11,12 @@ function UrlForm({ setResults }) {
       method: e.target.methodSelect.value,
       url: e.target.urlInput.value,
     };
-    let response = await axios(config);
-    setResults(response.data);
+    try {
+      let response = await axios(config);
+      setResults(response.data);
+    } catch(e) {
+      
+    }
 
   }
 
@@ -30,7 +34,7 @@ function UrlForm({ setResults }) {
 
         <Form.Group >
           <Form.Label>URL: </Form.Label>
-          <Form.Control type="text" placeholder="Enter URL" id='urlInput'/>
+          <Form.Control type="text" placeholder="Enter URL" id='urlInput' />
         </Form.Group>
       </Container>
 
