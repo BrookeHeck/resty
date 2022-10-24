@@ -1,0 +1,30 @@
+#inputsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+#inputsContainer .form-select {
+  width: 110x;
+  height: 100%;
+  margin-right: 5px;
+}
+
+.btn {
+  margin: 5px;
+}
+
+.submitForm {
+  display: block;
+  width: 100%;
+}
+
+#urlForm .form-control {
+  width: 500px;
+}
+
+#methodsDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
