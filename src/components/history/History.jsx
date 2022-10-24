@@ -1,7 +1,13 @@
-function History() {
+import React from 'react';
+import { Container } from 'react-bootstrap';
+import './History.scss';
 
+function History() {
   return (
-    <h2>History Component</h2>
+    <Container>
+      <h2>History</h2>
+      <div id="historyDiv"></div>
+    </Container>
   )
 }
 

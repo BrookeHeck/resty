@@ -1,7 +1,14 @@
+import React from 'react';
+import { Container } from 'react-bootstrap';
+import './Results.scss'
+
 function Results() {
 
   return (
-    <h2>Results Component</h2>
+    <Container id='resultsContainer'>
+      <h2>Results</h2>
+      <div id='results'></div>
+    </Container>
   )
 }
 
