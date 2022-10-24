@@ -4,17 +4,11 @@ import './Results.scss';
 
 function Results({ results }) {
 
-  function stringifyResults() {
-    if(results) {
-      return JSON.stringify(results, (key, value) => (value || ''), 4).replace(/"([^"]+)":/g, '$1:');
-    }
-  }
-
   return (
     <Container id='resultsContainer'>
       <h2>Results</h2>
       <div id='results'>
-        {stringifyResults()}
+        <pre>{results ? JSON.stringify(results, undefined, 2) : null}</pre>
       </div>
     </Container>
   )
