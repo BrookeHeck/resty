@@ -1,9 +1,12 @@
 import './App.scss';
+import Header from './components/header/Header';
+import UrlForm from './components/form/UrlForm';
 
 function App() {
   return (
     <div className="App">
-      <h1>RESTy</h1>
+      <Header/>
+      <UrlForm/>
     </div>
   );
 }

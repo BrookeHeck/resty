@@ -1,0 +1,25 @@
+.btn {
+  margin: 5px;
+}
+
+.method .btn {
+  background-color: gray;
+  color: black;
+  border: solid gray 2px;
+  margin: 5px;
+}
+
+.submitForm {
+  display: block;
+  width: 100%;
+}
+
+#urlForm .form-control {
+  width: 500px;
+}
+
+#methodsDiv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

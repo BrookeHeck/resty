@@ -1,7 +1,9 @@
+import React from 'react';
+
 function Header() {
 
   return (
-    <h2>Header Component</h2>
+    <h1>RESTy</h1>
   )
 }
 
