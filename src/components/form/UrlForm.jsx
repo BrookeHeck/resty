@@ -1,16 +1,11 @@
-import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import './UrlForm.scss';
 import axios from 'axios';
 import RequestConfigs from './RequestConfigs';
 
 function UrlForm({ setResults, history, setHistory }) {
-  const [ body, setBody ] = useState('');
-  const [ headers, setHeaders] = useState('');
 
   function updateHistory(config) {
-    console.log(body);
-    console.log(headers);
     const newSearch = {
       method : config.method,
       url : config.url,
@@ -22,9 +17,11 @@ function UrlForm({ setResults, history, setHistory }) {
 
   async function handleRequest(e) {
     e.preventDefault();
+
     const config = {
       method: e.target.methodSelect.value,
       url: e.target.urlInput.value,
+      data: e.target.bodyText.value
     };
     try {
       let response = await axios(config);
@@ -54,7 +51,7 @@ function UrlForm({ setResults, history, setHistory }) {
         </Form.Group>
       </Container>
 
-      <RequestConfigs setBody={setBody} setHeaders={setHeaders} />
+      <RequestConfigs />
 
       <Button type="submit" className='submitForm' >
         Submit

@@ -8,7 +8,6 @@ function RequestConfigs({ setBody, setHeaders }) {
 
   function handleSelect(selectedKey) {
     setActiveKey(selectedKey);
-    console.log(activeKey);
   }
 
   return (

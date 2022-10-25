@@ -1,7 +1,13 @@
 import React from 'react';
+import { Form } from 'react-bootstrap';
 
 function RequestBody() {
-  return <div>AHHHHHHHHH</div>
+  return (
+    <Form.Control 
+      type='text'
+      id='bodyText'
+    />
+  );
 }
 
 export default RequestBody;
