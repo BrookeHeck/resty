@@ -14,7 +14,9 @@ function UrlForm({ setResults, history, setHistory }) {
 
   function jsonChecker(body) {
     try {
-      return JSON.parse(body);
+      const noWhiteSpace = body.replace(/[\t\n\s]+/gm, '');
+      console.log(noWhiteSpace);
+      return JSON.parse(noWhiteSpace);
     } catch(e) {
       throw new Error('Invalid JSON');
     }
