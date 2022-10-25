@@ -39,3 +39,5 @@ oct-24-2022 @ 1227 - Make axios requests with info provided from form and show s
 
 ### Resource
 [How to print JSON String in human readable format in JS](https://stackoverflow.com/questions/60785852/how-to-print-json-string-in-human-readable-format-in-js)
+
+[Render Component in Nav](https://stackoverflow.com/questions/35872349/react-js-bootstrap-render-component-in-nav)

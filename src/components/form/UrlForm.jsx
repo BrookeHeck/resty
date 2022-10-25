@@ -1,36 +1,48 @@
-import React from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import './UrlForm.scss';
 import axios from 'axios';
+import RequestConfigs from './RequestConfigs';
 
 function UrlForm({ setResults, history, setHistory }) {
 
   function updateHistory(config) {
-    const newSearch = {
-      'method': config.method,
-      'url': config.url,
-    };
     const newHistory = history;
-    newHistory.push(newSearch)
+    newHistory.push(config);
     setHistory(newHistory);
+  }
+
+  function jsonChecker(body) {
+    try {
+      const noWhiteSpace = body.replace(/[\t\n\s]+/gm, '');
+      console.log(noWhiteSpace);
+      return JSON.parse(noWhiteSpace);
+    } catch(e) {
+      throw new Error('Invalid JSON');
+    }
   }
 
   async function handleRequest(e) {
     e.preventDefault();
-    const config = {
-      method: e.target.methodSelect.value,
-      url: e.target.urlInput.value,
-    };
     try {
-      let response = await axios(config);
-      setResults(response.data);
-      updateHistory(config);
-    } catch(e) {
+      const requestBody = e.target.bodyText.value ? jsonChecker(e.target.bodyText.value) : '';
+      const config = {
+        method: e.target.methodSelect.value,
+        url: e.target.urlInput.value,
+        data: requestBody,
+      };
 
+      try {
+        let response = await axios(config);
+        setResults(response.data);
+        updateHistory(config);
+      } catch(e) {
+        throw new Error('Invalid Request');
+      }
+    } catch(e) {
+      console.log(e.message);
     }
 
   }
-
 
   return (
     <Form id='urlForm' onSubmit={handleRequest}>
@@ -49,6 +61,7 @@ function UrlForm({ setResults, history, setHistory }) {
         </Form.Group>
       </Container>
 
+      <RequestConfigs />
 
       <Button type="submit" className='submitForm' >
         Submit
