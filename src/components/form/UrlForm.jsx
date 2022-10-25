@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import './UrlForm.scss';
 import axios from 'axios';
@@ -8,7 +7,7 @@ function UrlForm({ setResults, history, setHistory }) {
 
   function updateHistory(config) {
     const newHistory = history;
-    newHistory.push(config)
+    newHistory.push(config);
     setHistory(newHistory);
   }
 
