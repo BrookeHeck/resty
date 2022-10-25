@@ -12,7 +12,7 @@ function RequestConfigs({ setBody, setHeaders }) {
 
   return (
     <div>
-      <Nav variant="tabs" defaultActiveKey='1' onSelect={handleSelect}>
+      <Nav variant="tabs" defaultActiveKey='2' onSelect={handleSelect}>
         <Nav.Item>
           <Nav.Link eventKey='1'>Body</Nav.Link>
         </Nav.Item>
