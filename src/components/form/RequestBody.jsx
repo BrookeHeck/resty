@@ -4,7 +4,8 @@ import { Form } from 'react-bootstrap';
 function RequestBody() {
   return (
     <Form.Control 
-      type='text'
+      as='textarea'
+      rows='10'
       id='bodyText'
     />
   );
