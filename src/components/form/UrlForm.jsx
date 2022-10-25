@@ -1,14 +1,19 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Form, Button, Container } from 'react-bootstrap';
 import './UrlForm.scss';
 import axios from 'axios';
+import RequestConfigs from './RequestConfigs';
 
 function UrlForm({ setResults, history, setHistory }) {
+  const [ body, setBody ] = useState('');
+  const [ headers, setHeaders] = useState('');
 
   function updateHistory(config) {
+    console.log(body);
+    console.log(headers);
     const newSearch = {
-      'method': config.method,
-      'url': config.url,
+      method : config.method,
+      url : config.url,
     };
     const newHistory = history;
     newHistory.push(newSearch)
@@ -49,6 +54,7 @@ function UrlForm({ setResults, history, setHistory }) {
         </Form.Group>
       </Container>
 
+      <RequestConfigs setBody={setBody} setHeaders={setHeaders} />
 
       <Button type="submit" className='submitForm' >
         Submit
