@@ -11,7 +11,6 @@ function RequestBody({jsonText, setJsonText }) {
   }
 
   useEffect(() => {
-    console.log(jsonText);
     bodyText.current.value = jsonText;
   }, [jsonText, bodyText]);
 
