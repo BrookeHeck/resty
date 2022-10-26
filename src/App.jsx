@@ -9,6 +9,8 @@ import History from './components/history/History';
 function App() {
   const [history, setHistory] = useState([]);
   const [results, setResults] = useState('');
+  const [isLoading, setIsLoading] = useState(false);
+  const [isError, setIsError] = useState(false);
 
   return (
     <div className="App">
@@ -18,8 +20,18 @@ function App() {
           <History history={history} />
         </Container>
         <Container id='url-results-div'>
-          <UrlForm setResults={setResults} history={history} setHistory={setHistory} />
-          <Results results={results} />
+          <UrlForm
+            setResults={setResults}
+            history={history}
+            setHistory={setHistory}
+            setIsLoading={setIsLoading}
+            setIsError={setIsError} 
+          />
+          <Results
+            results={results}
+            isLoading={isLoading}
+            isError={isError}
+          />
         </Container>
       </Container>
     </div>

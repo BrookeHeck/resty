@@ -3,7 +3,7 @@ import './UrlForm.scss';
 import axios from 'axios';
 import RequestConfigs from './RequestConfigs';
 
-function UrlForm({ setResults, history, setHistory }) {
+function UrlForm({ setResults, history, setHistory, setIsLoading, setIsError }) {
 
   function updateHistory(config) {
     const newHistory = history;
@@ -35,7 +35,8 @@ function UrlForm({ setResults, history, setHistory }) {
 
   async function handleRequest(e) {
     e.preventDefault();
-
+    setIsLoading(true);
+    setIsError(false);
     try {
       const config = {
         method: e.target.methodSelect.value,
@@ -53,13 +54,15 @@ function UrlForm({ setResults, history, setHistory }) {
         });
       }
 
-      console.log(config);
-
       try {
         let response = await axios(config);
         setResults(response.data);
         updateHistory(config);
+        setIsLoading(false);
       } catch(e) {
+        setIsLoading(false);
+        setResults('');
+        setIsError(true);
         throw new Error('Invalid Request');
       }
     } catch(e) {
