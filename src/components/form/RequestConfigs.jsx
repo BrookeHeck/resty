@@ -3,8 +3,14 @@ import { Nav } from 'react-bootstrap';
 import RequestBody from './RequestBody';
 import RequestHeader from './RequestHeader';
 
-function RequestConfigs({ setBody, setHeaders }) {
+function RequestConfigs() {
   const [activeKey, setActiveKey] = useState();
+  const [jsonText, setJsonText] = useState('');
+  const [authCredentials, setAuthCredentials] = useState({
+    username: '',
+    password: '',
+  });
+  const [token, setToken] = useState('');
 
   function handleSelect(selectedKey) {
     setActiveKey(selectedKey);
@@ -23,9 +29,14 @@ function RequestConfigs({ setBody, setHeaders }) {
 
       {
         activeKey === '1' ?
-          <RequestBody />
+          <RequestBody jsonText={jsonText} setJsonText={setJsonText} />
           :
-          <RequestHeader />
+          <RequestHeader 
+            authCredentials={authCredentials}
+            setAuthCredentials={setAuthCredentials}
+            token={token}
+            setToken={setToken}
+          />
       }
     </div>
   );

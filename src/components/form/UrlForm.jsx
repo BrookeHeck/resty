@@ -3,7 +3,7 @@ import './UrlForm.scss';
 import axios from 'axios';
 import RequestConfigs from './RequestConfigs';
 
-function UrlForm({ setResults, history, setHistory }) {
+function UrlForm({ setResults, history, setHistory, setIsLoading, setIsError }) {
 
   function updateHistory(config) {
     const newHistory = history;
@@ -14,32 +14,59 @@ function UrlForm({ setResults, history, setHistory }) {
   function jsonChecker(body) {
     try {
       const noWhiteSpace = body.replace(/[\t\n\s]+/gm, '');
-      console.log(noWhiteSpace);
       return JSON.parse(noWhiteSpace);
     } catch(e) {
       throw new Error('Invalid JSON');
     }
   }
 
+  function formatHeader(credentials) {
+    if(credentials.username) {
+      return {
+        username: credentials.username,
+        password: credentials.password,
+      };
+    } else {
+      return {
+        'Authorization': `Bearer ${credentials.token}`
+      };
+    }
+  };
+
   async function handleRequest(e) {
     e.preventDefault();
+    setIsLoading(true);
+    setIsError(false);
     try {
-      const requestBody = e.target.bodyText.value ? jsonChecker(e.target.bodyText.value) : '';
       const config = {
         method: e.target.methodSelect.value,
         url: e.target.urlInput.value,
-        data: requestBody,
       };
+
+      if(e.target.bodyText) config.data = jsonChecker(e.target.bodyText.value);
+
+      if(e.target.bearerToken) config.headers = formatHeader({token: e.target.bearerToken.value});
+
+      if(e.target.usernameInput && e.target.passInput) {
+        config.auth = formatHeader({
+          username: e.target.usernameInput.value,
+          password: e.target.passInput.value,
+        });
+      }
 
       try {
         let response = await axios(config);
         setResults(response.data);
         updateHistory(config);
+        setIsLoading(false);
       } catch(e) {
+        setIsLoading(false);
+        setResults('');
+        setIsError(true);
         throw new Error('Invalid Request');
       }
     } catch(e) {
-      console.log(e.message);
+      console.log(e);
     }
 
   }
