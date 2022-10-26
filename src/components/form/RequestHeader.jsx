@@ -71,21 +71,23 @@ function RequestHeader({ authCredentials, setAuthCredentials, token, setToken })
       {
         selected === 'Basic' &&
         <div>
-          <Form.Group className="mb-3" controlId="formBasicUsername">
+          <Form.Group className="mb-3">
             <Form.Label>Username</Form.Label>
             <Form.Control
               type="text"
               placeholder="Enter username"
+              id='usernameInput'
               ref={usernameInput}
               onChange={handleUsernameChange}
             />
           </Form.Group>
 
-          <Form.Group className="mb-3" controlId="formBasicPassword">
+          <Form.Group className="mb-3">
             <Form.Label>Password</Form.Label>
             <Form.Control 
               type="password"
               placeholder="Password"
+              id='passInput'
               ref={passInput}
               onChange={handlePasswordChange}
             />

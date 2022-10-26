@@ -7,8 +7,8 @@ function RequestConfigs() {
   const [activeKey, setActiveKey] = useState();
   const [jsonText, setJsonText] = useState('');
   const [authCredentials, setAuthCredentials] = useState({
-    username: 'username',
-    password: 'foo',
+    username: '',
+    password: '',
   });
   const [token, setToken] = useState('');
 
