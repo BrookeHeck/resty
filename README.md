@@ -35,7 +35,10 @@ Your app is ready to be deployed!
 
 ### Change Logs
 oct-24-2022 @ 1015 - Add form, results, and history functional components and styling
+
 oct-24-2022 @ 1227 - Make axios requests with info provided from form and show search history in sidebar
+
+oct-25-2022 @ 1330 - Form for JSON body and Headers created
 
 ### Resource
 [How to print JSON String in human readable format in JS](https://stackoverflow.com/questions/60785852/how-to-print-json-string-in-human-readable-format-in-js)
