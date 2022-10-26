@@ -5,6 +5,7 @@ import RequestHeader from './RequestHeader';
 
 function RequestConfigs({ setBody, setHeaders }) {
   const [activeKey, setActiveKey] = useState();
+  const [jsonText, setJsonText] = useState('');
 
   function handleSelect(selectedKey) {
     setActiveKey(selectedKey);
@@ -23,7 +24,7 @@ function RequestConfigs({ setBody, setHeaders }) {
 
       {
         activeKey === '1' ?
-          <RequestBody />
+          <RequestBody jsonText={jsonText} setJsonText={setJsonText} />
           :
           <RequestHeader />
       }
