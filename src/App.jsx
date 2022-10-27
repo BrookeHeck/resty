@@ -17,7 +17,7 @@ function App() {
       <Header id='header' />
       <Container id='main'>
         <Container id='history-div'>
-          <History history={history} />
+          <History history={history} setResults={setResults} />
         </Container>
         <Container id='url-results-div'>
           <UrlForm

@@ -14,6 +14,7 @@ function UrlForm({ setResults, history, setHistory, setIsLoading, setIsError }) 
   function jsonChecker(body) {
     try {
       const noWhiteSpace = body.replace(/[\t\n\s]+/gm, '');
+      console.log(JSON.parse(noWhiteSpace));
       return JSON.parse(noWhiteSpace);
     } catch(e) {
       throw new Error('Invalid JSON');
@@ -57,6 +58,7 @@ function UrlForm({ setResults, history, setHistory, setIsLoading, setIsError }) 
       try {
         let response = await axios(config);
         setResults(response.data);
+        config.results = response.data;
         updateHistory(config);
         setIsLoading(false);
       } catch(e) {
