@@ -4,13 +4,11 @@ import RequestBody from './RequestBody';
 import RequestHeader from './RequestHeader';
 
 function RequestConfigs() {
-  const [activeKey, setActiveKey] = useState();
+  const [activeKey, setActiveKey] = useState(1);
   const [jsonText, setJsonText] = useState('');
-  const [authCredentials, setAuthCredentials] = useState({
-    username: '',
-    password: '',
-  });
+  const [authCredentials, setAuthCredentials] = useState({});
   const [token, setToken] = useState('');
+
 
   function handleSelect(selectedKey) {
     setActiveKey(selectedKey);

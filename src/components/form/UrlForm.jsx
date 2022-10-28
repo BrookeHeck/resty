@@ -5,6 +5,7 @@ import RequestConfigs from './RequestConfigs';
 
 function UrlForm({ setResults, history, setHistory, setIsLoading, setIsError }) {
 
+
   function updateHistory(config) {
     const newHistory = history;
     newHistory.push(config);
@@ -56,7 +57,9 @@ function UrlForm({ setResults, history, setHistory, setIsLoading, setIsError }) 
       }
 
       try {
+        console.log(config);
         let response = await axios(config);
+        console.log(response);
         setResults(response.data);
         config.results = response.data;
         updateHistory(config);
