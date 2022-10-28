@@ -8,7 +8,7 @@ function UrlForm({ setResults, history, setHistory, setIsLoading, setIsError }) 
 
   function updateHistory(config) {
     const newHistory = history;
-    newHistory.push(config);
+    newHistory.unshift(config);
     setHistory(newHistory);
   }
 
