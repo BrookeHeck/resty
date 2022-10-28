@@ -1,7 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 
-function RequestHeader({ authCredentials, setAuthCredentials, token, setToken }) {
+function RequestHeader({ authCredentials, token, dispatch }) {
   const tokenInput = useRef(null);
   const usernameInput = useRef(null);
   const passInput = useRef(null);
@@ -10,11 +10,11 @@ function RequestHeader({ authCredentials, setAuthCredentials, token, setToken })
   const authTypes = ['Bearer', 'Basic', 'None'];
 
   useEffect(() => {
-    if(usernameInput.current) {
+    if (usernameInput.current) {
       usernameInput.current.value = authCredentials.username;
       passInput.current.value = authCredentials.password;
     }
-    if(tokenInput.current) tokenInput.current.value = token;
+    if (tokenInput.current) tokenInput.current.value = token;
 
   }, [authCredentials, token, tokenInput, selected])
 
@@ -24,23 +24,34 @@ function RequestHeader({ authCredentials, setAuthCredentials, token, setToken })
 
   function handleUsernameChange(e) {
     usernameInput.current.value = e.target.value;
-    setAuthCredentials({
-      username: e.target.value,
-      password: authCredentials.password,
-    });
+    dispatch(
+      {
+        type: 'auth',
+        authCredentials: {
+          username: e.target.value,
+          password: authCredentials.password,
+        }
+      }
+    );
   }
 
   function handlePasswordChange(e) {
     passInput.current.value = e.target.value;
-    setAuthCredentials({
-      username: authCredentials.username,
-      password: e.target.value,
+    dispatch({
+      type: 'auth',
+      authCredentials: {
+        username: authCredentials.username,
+        password: e.target.value,
+      }
     });
   }
 
   function handleBearerAuthChange(e) {
     tokenInput.current.value = e.target.value;
-    setToken(e.target.value);
+    dispatch({
+      type: 'bearer',
+      token: e.target.value,
+    })
   }
 
   return (
@@ -84,7 +95,7 @@ function RequestHeader({ authCredentials, setAuthCredentials, token, setToken })
 
           <Form.Group className="mb-3">
             <Form.Label>Password</Form.Label>
-            <Form.Control 
+            <Form.Control
               type="password"
               placeholder="Password"
               id='passInput'

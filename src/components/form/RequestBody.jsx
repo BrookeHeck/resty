@@ -1,12 +1,12 @@
 import React, { useRef, useEffect } from 'react';
 import { Form } from 'react-bootstrap';
 
-function RequestBody({jsonText, setJsonText }) {
+function RequestBody({jsonText, dispatch }) {
   const bodyText = useRef(null);
   
   function handleTextChange(e) {
     if(bodyText.current.value) {
-      setJsonText(e.target.value);
+      dispatch({type: 'json', jsonText: e.target.value});
     }
   }
 
