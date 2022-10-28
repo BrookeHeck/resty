@@ -1,7 +1,7 @@
 # RESTy
 
 ## Overview
-This project shows results from making requests to a specified endpoint. You can add an endpoint to the text input and choose the method in the select box next to it. You can also add a body in the body tab of the nav. In the header tab, you choose to add a bearer token or a username and password for basic auth. Hitting submit will show the results in the container below. Alerts will show when a request is loading and when an invalid request was made. A search history is recorded in the left sidebar.
+This project shows results from making requests to a specified endpoint. You can add an endpoint to the text input and choose the method in the select box next to it. You can also add a body in the body tab of the nav. In the header tab, you choose to add a bearer token or a username and password for basic auth. Hitting submit will show the results in the container below. Alerts will show when a request is loading and when an invalid request was made. A search history is recorded in the left sidebar. When you click on any of the search history items, you can see the results for that query.
 
 [Deployed Site](https://unique-cendol-3e90d5.netlify.app/)
 
@@ -41,6 +41,10 @@ oct-24-2022 @ 1227 - Make axios requests with info provided from form and show s
 oct-25-2022 @ 1430 - Added a basic and bearer auth form
 
 oct-26-2022 @ 1407 - Used useEffect and useRef hooks to keep values in the inputs, requests use the data in the inputs to make requests
+
+oct-27-2022 @ 1130 - made the history a stack, clicking on a history gives you the results for that query
+
+oct-28-2022 @ 0619 - Refactored some of the useState hooks and used useReducer instead
 
 ### Resource
 [How to print JSON String in human readable format in JS](https://stackoverflow.com/questions/60785852/how-to-print-json-string-in-human-readable-format-in-js)

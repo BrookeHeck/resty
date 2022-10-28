@@ -11,6 +11,7 @@
   flex-direction: column;
   align-items: center;
   justify-content: center;
+  max-width: 550px;
 }
 
 .alert {
@@ -21,4 +22,8 @@
 
 .alert p {
   margin: 0 auto;
+}
+
+#results pre {
+  max-width: 550px;
 }

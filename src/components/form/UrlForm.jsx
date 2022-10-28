@@ -3,17 +3,19 @@ import './UrlForm.scss';
 import axios from 'axios';
 import RequestConfigs from './RequestConfigs';
 
-function UrlForm({ setResults, history, setHistory, setIsLoading, setIsError }) {
+function UrlForm({ setResults, history, setHistory, dispatch }) {
+
 
   function updateHistory(config) {
     const newHistory = history;
-    newHistory.push(config);
+    newHistory.unshift(config);
     setHistory(newHistory);
   }
 
   function jsonChecker(body) {
     try {
       const noWhiteSpace = body.replace(/[\t\n\s]+/gm, '');
+      console.log(JSON.parse(noWhiteSpace));
       return JSON.parse(noWhiteSpace);
     } catch(e) {
       throw new Error('Invalid JSON');
@@ -35,8 +37,8 @@ function UrlForm({ setResults, history, setHistory, setIsLoading, setIsError }) 
 
   async function handleRequest(e) {
     e.preventDefault();
-    setIsLoading(true);
-    setIsError(false);
+    dispatch({type: 'loading', isLoading: true});
+    dispatch({type: 'error', isError: false});
     try {
       const config = {
         method: e.target.methodSelect.value,
@@ -55,14 +57,17 @@ function UrlForm({ setResults, history, setHistory, setIsLoading, setIsError }) 
       }
 
       try {
+        console.log(config);
         let response = await axios(config);
+        console.log(response);
         setResults(response.data);
+        config.results = response.data;
         updateHistory(config);
-        setIsLoading(false);
+        dispatch({type: 'loading', isLoading: false});
       } catch(e) {
-        setIsLoading(false);
+        dispatch({type: 'loading', isLoading: false});
         setResults('');
-        setIsError(true);
+        dispatch({type: 'error', isError: true});
         throw new Error('Invalid Request');
       }
     } catch(e) {

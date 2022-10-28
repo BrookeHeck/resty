@@ -1,16 +1,22 @@
-import React, { useState } from 'react';
+import React, { useState, useReducer } from 'react';
 import { Nav } from 'react-bootstrap';
 import RequestBody from './RequestBody';
 import RequestHeader from './RequestHeader';
 
 function RequestConfigs() {
-  const [activeKey, setActiveKey] = useState();
-  const [jsonText, setJsonText] = useState('');
-  const [authCredentials, setAuthCredentials] = useState({
-    username: '',
-    password: '',
+  const [activeKey, setActiveKey] = useState(1);
+  // const [jsonText, setJsonText] = useState('');
+  // const [authCredentials, setAuthCredentials] = useState({});
+  // const [token, setToken] = useState('');
+
+  const [state, dispatch] = useReducer(reducer, {
+    jsonText: '',
+    authCredentials: {
+      username: '',
+      password: ''
+    },
+    token: '',
   });
-  const [token, setToken] = useState('');
 
   function handleSelect(selectedKey) {
     setActiveKey(selectedKey);
@@ -29,17 +35,41 @@ function RequestConfigs() {
 
       {
         activeKey === '1' ?
-          <RequestBody jsonText={jsonText} setJsonText={setJsonText} />
+          <RequestBody jsonText={state.jsonText} dispatch={dispatch} />
           :
-          <RequestHeader 
-            authCredentials={authCredentials}
-            setAuthCredentials={setAuthCredentials}
-            token={token}
-            setToken={setToken}
+          <RequestHeader
+            authCredentials={state.authCredentials}
+            dispatch={dispatch}
+            token={state.token}
           />
       }
     </div>
   );
+}
+
+function reducer(state, action) {
+  switch (action.type) {
+    case 'bearer':
+      return {
+        jsonText: state.jsonText,
+        authCredentials: state.authCredentials,
+        token: action.token,
+      }
+    case 'json':
+      return {
+        jsonText: action.jsonText,
+        authCredentials: state.authCredentials,
+        token: state.token,
+      }
+      case 'auth':
+        return {
+          jsonText: state.jsonText,
+          authCredentials: action.authCredentials,
+          token: state.token,
+        }
+    default:
+      return state;
+  }
 }
 
 export default RequestConfigs;
